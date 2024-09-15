@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposez vos services - THOMAS-TECH GROUP</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <meta property="og:title" content="FAMOUS-TECH GROUP - Opportunités pour Freelances">
+    <meta property="og:description" content="FAMOUS-TECH GROUP offre des opportunités pour les freelances en développement web, mobile, e-commerce et IA. Rejoignez-nous pour des projets passionnants et une rémunération équitable.">
+    <meta property="og:image" content="https://famous-tech-group-recrutements.vercel.app/images/icon.jpg"> 
+    <meta property="og:url" content="https://famous-tech-group-recrutements.vercel.app/"> 
+    <meta property="og:type" content="website">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #e74c3c;
+            --accent-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 3em 0;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.4em;
+            opacity: 0.9;
+        }
+        .section {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            padding: 2em;
+            margin-bottom: 2em;
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5em;
+            display: inline-block;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        .contact-form input, .contact-form textarea, .contact-form select, .contact-form input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <header class="animate__animated animate__fadeIn">
+        <h1>Proposez vos services</h1>
+        <p class="subtitle">THOMAS-TECH GROUP</p>
+    </header>
+    
+    <div class="container">
+        <section class="section animate__animated animate__fadeInUp">
+            <h2><i class="fas fa-envelope"></i> Proposez vos services</h2>
+            <form class="contact-form" id="contactForm">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="experience">Temps d'expérience (minimum 3 mois)</label>
+                <input type="text" id="experience" name="experience" required>
+                
+                <label for="age">Âge</label>
+                <input type="number" id="age" name="age" required>
+                
+                <label for="whatsapp">Numéro WhatsApp</label>
+                <input type="tel" id="whatsapp" name="whatsapp" required>
+                
+                <label for="languages">Langages de programmation</label>
+                <select id="languages" name="languages[]" multiple required>
+                    <option value="html">HTML/CSS</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="php">PHP</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="csharp">C#</option>
+                    <option value="swift">Swift</option>
+                    <option value="kotlin">Kotlin</option>
+                </select>
+                
+                <label for="projectType">Type de projet</label>
+                <select id="projectType" name="projectType" required>
+                    <option value="web">Sites Web</option>
+                    <option value="app">Applications</option>
+                    <option value="ecommerce">Sites E-commerce</option>
+                </select>
+                
+                <label for="cv">Télécharger votre CV</label>
+                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Envoyer</button>
+                <p style="color: red; font-size: 0.8em;">* Veuillez joindre votre CV lors de l'e-mail en cas de problème avec votre application mail.</p>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const experience = document.getElementById('experience').value;
+            const projectType = document.getElementById('projectType').value;
+            const message = document.getElementById('message').value;
+
+            const predefinedText = `Bonjour,
+
+Je suis ${name}, j'ai ${age} ans et je possède ${experience} d'expérience dans le domaine du développement. Je suis particulièrement intéressé par les projets de type ${projectType}.
+
+${message}
+
+Cordialement,
+${name}
+
+P.S. Veuillez joindre votre CV dans l'e-mail.`;
+
+            const mailtoLink = `mailto:kouamedjakiss765@gmail.com?subject=Déposition de CV&body=${encodeURIComponent(predefinedText)}`;
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>
