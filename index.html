@@ -8,13 +8,12 @@
     <meta name="keywords" content="freelance, développement web, applications mobiles, e-commerce, IA, machine learning, projets payés, Haïti, Thomas-Tech">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <!-- Balises Open Graph -->
-<meta property="og:title" content="THOMAS-TECH GROUP - Opportunités pour Freelances">
-<meta property="og:description" content="THOMAS-TECH GROUP offre des opportunités pour les freelances en développement web, mobile, e-commerce et IA. Rejoignez-nous pour des projets passionnants et une rémunération équitable.">
-<meta property="og:image" content="https://iili.io/d4xRSgp.jpg"> <!-- Nouvelle image -->
-<meta property="og:url" content="https://hacking995.github.io/site-thomas/"> 
-<meta property="og:type" content="website">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="THOMAS-TECH GROUP - Opportunités pour Freelances">
+    <meta property="og:description" content="THOMAS-TECH GROUP offre des opportunités pour les freelances en développement web, mobile, e-commerce et IA. Rejoignez-nous pour des projets passionnants et une rémunération équitable.">
+    <meta property="og:image" content="https://iili.io/d4xRSgp.jpg">
+    <meta property="og:url" content="https://hacking995.github.io/site-thomas/"> 
+    <meta property="og:type" content="website">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <style>
         :root {
             --primary-color: #3498db;
@@ -40,17 +39,32 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             text-align: center;
-            padding: 3em 0;
+            padding: 4em 0;
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://iili.io/d4xRSgp.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
         }
         h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 0.2em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .subtitle {
-            font-size: 1.4em;
+            font-size: 1.6em;
             opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .section {
             background-color: white;
@@ -58,29 +72,32 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
             padding: 2em;
             margin-bottom: 2em;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .section:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
         h2 {
             color: var(--primary-color);
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 0.5em;
             display: inline-block;
+            font-size: 2em;
         }
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5em;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2em;
         }
         .project-item {
             background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 1.5em;
+            border-radius: 12px;
+            padding: 2em;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .project-item:hover {
             background-color: var(--accent-color);
@@ -88,9 +105,10 @@
             transform: scale(1.05);
         }
         .project-item i {
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 0.5em;
             color: var(--primary-color);
+            transition: color 0.3s ease;
         }
         .project-item:hover i {
             color: white;
@@ -107,97 +125,164 @@
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 1.1em;
         }
         .cta:hover {
             background-color: #27ae60;
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
         footer {
             text-align: center;
-            padding: 2em 0;
+            padding: 3em 0;
             background-color: #2c3e50;
             color: white;
             clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
         }
         .social-icons {
-            margin-top: 1em;
+            margin-top: 1.5em;
         }
         .social-icons a {
             color: white;
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
+            font-size: 1.8em;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
         }
         .social-icons a:hover {
             color: var(--accent-color);
+            transform: translateY(-3px);
         }
         .benefits-list {
             list-style-type: none;
             padding: 0;
         }
         .benefits-list li {
-            padding: 10px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .benefits-list li:hover {
+            transform: translateX(10px);
         }
         .benefits-list li:last-child {
             border-bottom: none;
         }
         .benefits-list li i {
-            margin-right: 10px;
+            margin-right: 15px;
             color: var(--accent-color);
+            font-size: 1.2em;
         }
         #faqAccordion {
             margin-top: 2em;
         }
         .faq-item {
-            margin-bottom: 1em;
+            margin-bottom: 1.5em;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .faq-question {
             background-color: #f1f3f5;
-            padding: 1em;
+            padding: 1.2em;
             cursor: pointer;
-            border-radius: 8px;
+            font-weight: bold;
             transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .faq-question:hover {
             background-color: #e9ecef;
         }
+        .faq-question::after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active::after {
+            transform: rotate(180deg);
+        }
         .faq-answer {
-            padding: 1em;
-            display: none;
+            padding: 0 1.2em;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
             background-color: #f8f9fa;
-            border-radius: 0 0 8px 8px;
+        }
+        .faq-answer.show {
+            padding: 1.2em;
+            max-height: 1000px;
+        }
+        .text-center {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .cta-container {
+            display: inline-block;
+            width: 300px;
+            height: 60px;
+            overflow: hidden;
+            background-color: #FFD700;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .scrolling-cta {
+            display: inline-block;
+            white-space: nowrap;
+            padding: 20px 0;
+            color: #000000;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            animation: scrollText 15s linear infinite;
+        }
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .cta-container:hover .scrolling-cta {
+            animation-play-state: paused;
         }
     </style>
 </head>
 <body>
     <header class="animate__animated animate__fadeIn">
         <h1>THOMAS-TECH GROUP</h1>
-        <p class="subtitle">Recrutements pour THOMAS-TECH-GROUP</p>
+        <p class="subtitle">Découvrez des opportunités passionnantes pour les freelances talentueux</p>
     </header>
     
     <div class="container">
         <section class="section animate__animated animate__fadeInUp">
             <h2><i class="fas fa-briefcase"></i> Nos Projets</h2>
-            <p>Chez THOMAS-TECH GROUP, nous offrons une variété de projets passionnants pour les freelances talentueux et des logiciels de déblocage. Chaque projet est une opportunité de démontrer votre expertise et d'être rémunéré de manière équitable.</p>
+            <p>Chez THOMAS-TECH GROUP, nous proposons une variété de projets stimulants pour les freelances talentueux. Chaque projet est une opportunité de démontrer votre expertise et d'être rémunéré équitablement.</p>
             <div class="project-grid">
                 <div class="project-item">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Applications Mobiles</h3>
-                    <p>Développer web  d'apps des cracking apk et Android déblocage</p>
+                    <p>Développement d'apps, cracking APK et déblocage Android</p>
                 </div>
                 <div class="project-item">
                     <i class="fas fa-globe"></i>
                     <h3>Sites Web</h3>
-                    <p>Création de sites web modernes et réactifs , apprenez le Javascript</p>
+                    <p>Création de sites web modernes et réactifs, maîtrise du JavaScript</p>
                 </div>
                 <div class="project-item">
                     <i class="fas fa-shopping-cart"></i>
-                    <h3>E-commerce et logiciel</h3>
-                    <p>Plateformes de vente en ligne performantes et des logiciels de déblocage téléphone</p>
+                    <h3>E-commerce et Logiciels</h3>
+                    <p>Plateformes de vente en ligne performantes et logiciels de déblocage de téléphones</p>
                 </div>
             </div>
         </section>
@@ -215,12 +300,12 @@
         
         <section class="section animate__animated animate__fadeInUp">
             <h2><i class="fas fa-user-check"></i> Profil Recherché</h2>
-            <ul>
-                <li>Expérience avérée dans le développement de projets similaires</li>
-                <li>Excellentes compétences en gestion de projet et respect des délais</li>
-                <li>Capacité à communiquer efficacement et à travailler de manière autonome</li>
-                <li>Passion pour l'innovation et l'apprentissage continu</li>
-                <li>Maîtrise des technologies modernes de développement</li>
+            <ul class="benefits-list">
+                <li><i class="fas fa-check-circle"></i> Expérience avérée dans le développement de projets similaires</li>
+                <li><i class="fas fa-tasks"></i> Excellentes compétences en gestion de projet et respect des délais</li>
+                <li><i class="fas fa-comments"></i> Capacité à communiquer efficacement et à travailler de manière autonome</li>
+                <li><i class="fas fa-lightbulb"></i> Passion pour l'innovation et l'apprentissage continu</li>
+                <li><i class="fas fa-code"></i> Maîtrise des technologies modernes de développement</li>
             </ul>
         </section>
         
@@ -229,7 +314,7 @@
             <div id="faqAccordion">
                 <div class="faq-item">
                     <div class="faq-question">Comment fonctionne le paiement ?</div>
-                    <div class="faq-answer">Le paiement est effectué en fonction du travail que vous effectuez pour chaque projet chaque projet. Nous discutons des termes et des échéances au début de chaque collaboration pour assurer une rémunération juste et transparente.</div>
+                    <div class="faq-answer">Le paiement est effectué en fonction du travail que vous effectuez pour chaque projet. Nous discutons des termes et des échéances au début de chaque collaboration pour assurer une rémunération juste et transparente.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Puis-je travailler sur plusieurs projets simultanément ?</div>
@@ -240,12 +325,12 @@
                     <div class="faq-answer">Oui, nous avons souvent des projets qui s'étendent sur plusieurs mois, offrant ainsi une stabilité pour les freelances qui le souhaitent.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">quelle langue recherchez-vous ?</div>
-                    <div class="faq-answer">Chez THOMAS-TECH GROUP nous recherchons des développeurs francophones et ou anglophones. </div>
+                    <div class="faq-question">Quelles langues recherchez-vous ?</div>
+                    <div class="faq-answer">Chez THOMAS-TECH GROUP, nous recherchons des développeurs francophones et/ou anglophones.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Avez-vous une limite d’âge ?</div>
-                    <div class="faq-answer">Oui, la limite d’âge est de 13 ans, vu que cette génération apporte de jeunes perles.</div>
+                    <div class="faq-question">Avez-vous une limite d'âge ?</div>
+                    <div class="faq-answer">Oui, la limite d'âge est de 13 ans, car nous croyons que cette génération apporte de jeunes talents prometteurs.</div>
                 </div>
             </div>
         </section>
@@ -253,88 +338,24 @@
         <div class="text-center">
             <a href="in.html" class="cta animate__animated animate__pulse animate__infinite">Proposez vos services</a>
         </div>
-       </div>
-    
-    
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bouton CTA Animé</title>
-    <style>
-        .text-center {
-            text-align: center;
-            margin-top: 50px;
-        }
-        .cta-container {
-            display: inline-block;
-            width: 300px;
-            height: 60px;
-            overflow: hidden;
-            background-color: #FFD700; /* Jaune */
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .cta {
-            display: inline-block;
-            white-space: nowrap;
-            padding: 20px 0;
-            color: #000000; /* Texte en noir pour un meilleur contraste */
-            text-decoration: none;
-            font-size: 18px;
-            animation: scrollText 15s linear infinite;
-        }
-        @keyframes scrollText {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-        .cta-container:hover .cta {
-            animation-play-state: paused;
-        }
-    </style>
-</head>
-<body>
-    <div class="text-center">
-        <div class="cta-container">
-            <a href="ex.html" class="cta">
-                Tu veux quelques bénéfices de mes APK site gratuit ? Clique ici ! Tu veux quelques bénéfices de mes APK site gratuit ? Clique ici !
-            </a>
+        <div class="text-center" style="margin-top: 30px;">
+            <div class="cta-container">
+                <a href="ex.html" class="scrolling-cta">
+                    Tu veux quelques bénéfices de mes APK premium,  tu veux  un bot WhatsApp,  canvas team , site gratuit ? Clique ici !
+                </a>
+            </div>
         </div>
     </div>
-</body>
-</html>
-
-
-    
-    
-
-    
-    
-    
-    
-    
     
     <footer>
-        <p>&copy; 2024 THOMAS-TECH GROUP. Tous droits réservés. veuillez  cliquer les icônes ci-dessous pour accéder , pour plus d'infos</p>
+        <p>&copy; 2024 THOMAS-TECH GROUP. Tous droits réservés. Cliquez sur les icônes ci-dessous pour plus d'informations</p>
         <div class="social-icons">
             <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/HACKING995" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            
-                     
             <a href="https://www.instagram.com/kouamedjakiss765?igsh=MTB3bHV0MG5jMTduaA==" target="_blank"><i class="fab fa-instagram"></i></a>
-            
-            
-            
             <a href="https://www.tiktok.com/@thomas.brow.d?_t=8pk1fTOpmHV&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-           
-              
         </div>
     </footer>
 
@@ -345,7 +366,8 @@
                 const question = item.querySelector('.faq-question');
                 const answer = item.querySelector('.faq-answer');
                 question.addEventListener('click', () => {
-                    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                    question.classList.toggle('active');
+                    answer.classList.toggle('show');
                 });
             });
         });
