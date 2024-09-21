@@ -6,11 +6,12 @@
     <title>Catalogue THOMAS-TECH</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #f0f2f5;
+            color: #333;
         }
         .container {
             max-width: 1200px;
@@ -18,64 +19,72 @@
             padding: 20px;
         }
         h1 {
-            color: #333;
+            color: #2c3e50;
             text-align: center;
             text-transform: uppercase;
             margin-bottom: 30px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-gap: 30px;
         }
         .product-card {
             background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         .product-card img {
             max-width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
         .product-card h3 {
-            margin: 10px 0;
+            margin: 15px 0;
             color: #2c3e50;
+            font-size: 1.4em;
         }
         .product-card p {
-            color: #666;
-            font-size: 0.9em;
+            color: #7f8c8d;
+            font-size: 0.95em;
             height: 80px;
             overflow: hidden;
+            margin-bottom: 15px;
         }
         .price {
             font-weight: bold;
             color: #e74c3c;
-            font-size: 1.2em;
-            margin: 10px 0;
+            font-size: 1.3em;
+            margin: 15px 0;
         }
         .btn {
             display: inline-block;
             background: #3498db;
             color: #fff;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             text-decoration: none;
-            margin-top: 10px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
         .btn:hover {
             background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .modal {
             display: none;
@@ -86,32 +95,34 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.6);
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
+            margin: 10% auto;
+            padding: 30px;
             border: 1px solid #888;
             width: 80%;
             max-width: 600px;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
         }
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
+            transition: 0.3s;
         }
         .close:hover,
         .close:focus {
-            color: black;
+            color: #2c3e50;
             text-decoration: none;
             cursor: pointer;
         }
         .text-center {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         .cta-container {
             display: inline-block;
@@ -122,13 +133,16 @@
             background-color: #e74c3c;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             animation: pulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .scrolling-cta:hover {
             background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -137,6 +151,48 @@
         }
         #modalDescription {
             white-space: pre-line;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .btn-payment {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-payment:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        .btn-payment:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .btn-payment:hover:before {
+            left: 100%;
+        }
+        .btn-payment:active {
+            transform: translateY(1px);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -155,7 +211,7 @@
                 <img src="https://iili.io/dPC5Wdl.jpg" alt="Team Canvas Pro">
                 <h3>Team Canvas Pro</h3>
                 <p>Smartphone dernière génération avec appareil photo haute résolution</p>
-                <p class="price">1000fca</p>
+                <p class="price">1000 FCFA</p>
                 <button class="btn" onclick="showDetails(1)">Voir détails</button>
             </div>
             <div class="product-card">
@@ -189,7 +245,7 @@
             <h2 id="modalTitle"></h2>
             <p id="modalDescription"></p>
             <p id="modalPrice"></p>
-            <button class="btn" onclick="redirectToPaiement()">Procéder au paiement</button>
+            <button class="btn-payment" onclick="redirectToPaiement()">Procéder au paiement</button>
         </div>
     </div>
 
