@@ -94,7 +94,7 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 500px;
+            max-width: 600px;
             border-radius: 10px;
         }
         .close {
@@ -108,6 +108,35 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+        .text-center {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .cta-container {
+            display: inline-block;
+        }
+        .scrolling-cta {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .scrolling-cta:hover {
+            background-color: #c0392b;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        #modalDescription {
+            white-space: pre-line;
         }
     </style>
 </head>
@@ -126,7 +155,7 @@
                 <img src="https://iili.io/dPC5Wdl.jpg" alt="Team Canvas Pro">
                 <h3>Team Canvas Pro</h3>
                 <p>Smartphone dernière génération avec appareil photo haute résolution</p>
-                <p class="price">799,99 €</p>
+                <p class="price">1000fca</p>
                 <button class="btn" onclick="showDetails(1)">Voir détails</button>
             </div>
             <div class="product-card">
@@ -142,6 +171,14 @@
                 <p>Plusieurs logiciels disponibles chez Thomas. Suppression de compte Google pour tout type de téléphone</p>
                 <p class="price">10.000 FCFA</p>
                 <button class="btn" onclick="showDetails(3)">Voir détails</button>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <div class="cta-container">
+                <a href="#" class="scrolling-cta">
+                    Tu veux quelques bénéfices de mes APK site gratuit ? Clique sur le bouton menu ensuite cliquez sur apk crack gratuit!
+                </a>
             </div>
         </div>
     </div>
@@ -162,25 +199,45 @@
                 title: "Des comptes Netflix",
                 description: "Tu veux des comptes Netflix par mois ou bien par jour ? Payer ici avec Thomas, c'est simple",
                 price: "2000 FCFA",
-                details: "Accès à tous les contenus Netflix. Disponible pour des durées mensuelles ou journalières. Qualité HD et Ultra HD selon le forfait choisi."
+                details: "🔥 Découvrez un monde de divertissement illimité ! 🌟\n\n" +
+                         "✅ Accès à des milliers de films, séries et documentaires\n" +
+                         "✅ Qualité HD et Ultra HD époustouflante\n" +
+                         "✅ Forfaits flexibles : journaliers ou mensuels\n" +
+                         "✅ Utilisable sur tous vos appareils\n\n" +
+                         "🚀 Ne manquez plus jamais vos séries préférées ! Commencez votre aventure Netflix dès aujourd'hui et transformez chaque soirée en expérience cinéma. Avec nos comptes, c'est comme avoir Hollywood chez vous ! 🎬🍿"
             },
             {
                 title: "Team Canvas Pro",
                 description: "Smartphone dernière génération avec appareil photo haute résolution",
-                price: "799,99 €",
-                details: "Smartphone haut de gamme avec un appareil photo de pointe. Idéal pour les amateurs de photographie mobile."
+                price: "1000 FCFA",
+                details: "📱 Découvrez le futur de la technologie mobile ! 🚀\n\n" +
+                         "✅ Appareil photo révolutionnaire : capturez la vie en haute définition\n" +
+                         "✅ Processeur ultra-rapide : performance inégalée\n" +
+                         "✅ Écran AMOLED vibrant : des couleurs à couper le souffle\n" +
+                         "✅ Batterie longue durée : restez connecté toute la journée\n\n" +
+                         "🌟 Transformez chaque instant en chef-d'œuvre ! Avec le Team Canvas Pro, vous n'aurez plus jamais besoin d'un autre appareil. C'est un téléphone, un appareil photo professionnel et un mini-ordinateur, tout en un ! 📸💼"
             },
             {
                 title: "Intégrer un Chatbot WhatsApp",
                 description: "Intégrez un Chatbot WhatsApp avec des réponses automatiques, GPT de différentes versions, sécurisé 24h/24",
                 price: "5.000 FCFA",
-                details: "Service d'intégration d'un chatbot WhatsApp personnalisé. Disponible 24h/24, avec des réponses automatiques intelligentes basées sur GPT."
+                details: "🤖 Révolutionnez votre service client avec l'IA ! 💬\n\n" +
+                         "✅ Disponible 24/7 : ne manquez jamais une opportunité\n" +
+                         "✅ Propulsé par GPT : des conversations naturelles et intelligentes\n" +
+                         "✅ Personnalisable : adaptez-le à votre marque\n" +
+                         "✅ Sécurisé : protégez les données de vos clients\n\n" +
+                         "🚀 Imaginez un assistant virtuel qui ne dort jamais, ne prend pas de pause et répond instantanément à vos clients. C'est possible avec notre Chatbot WhatsApp ! Boostez votre efficacité et impressionnez vos clients dès aujourd'hui ! 🌟💼"
             },
             {
                 title: "Logiciels de déblocage",
                 description: "Plusieurs logiciels disponibles chez Thomas. Suppression de compte Google pour tout type de téléphone",
                 price: "10.000 FCFA",
-                details: "Outils de déblocage pour divers appareils mobiles. Inclut la suppression de compte Google sur tous types de téléphones."
+                details: "🔓 Libérez le véritable potentiel de votre téléphone ! 📱\n\n" +
+                         "✅ Suppression de compte Google : reprenez le contrôle\n" +
+                         "✅ Déverrouillage de bootloader : personnalisez comme jamais\n" +
+                         "✅ Compatible avec tous les modèles : une solution universelle\n" +
+                         "✅ Support technique expert : nous sommes là pour vous guider\n\n" +
+                         "🚀 Imaginez pouvoir faire TOUT ce que vous voulez avec votre téléphone. C'est possible ! Nos logiciels de déblocage sont la clé de votre liberté numérique. Ne laissez plus les restrictions vous limiter, devenez le véritable maître de votre appareil ! 💪🔐"
             }
         ];
 
@@ -206,11 +263,8 @@
         }
 
         function redirectToPaiement() {
-            // Rediriger vers la page de paiement
-            alert("Redirection vers la page de paiement...");
-            // window.location.href = "paiement.html";
+            window.location.href = "paiement.html";
         }
     </script>
 </body>
 </html>
-
