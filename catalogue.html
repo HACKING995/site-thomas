@@ -200,47 +200,41 @@
     <div class="container">
         <h1>Catalogue THOMAS TECH</h1>
         <div class="product-grid">
+            <!-- Nouveau produit Canal+ à vie en première position -->
+            <div class="product-card">
+                <img src="https://iili.io/dZ4NrAP.jpg" alt="Canal+ à vie">
+                <h3>Canal+ à vie</h3>
+                <p>Accédez à des milliers de chaînes et de contenus exclusifs à vie avec Canal+.</p>
+                <p class="price">20.000 FCFA</p>
+                <button class="btn" onclick="showDetails(0)">Voir détails</button>
+            </div>
             <div class="product-card">
                 <img src="https://iili.io/dPCCyoQ.jpg" alt="Comptes Netflix">
                 <h3>Des comptes Netflix</h3>
                 <p>Tu veux des comptes Netflix par mois ou bien par jour ? Payer ici avec Thomas, c'est simple</p>
                 <p class="price">2000 FCFA</p>
-                <button class="btn" onclick="showDetails(0)">Voir détails</button>
-            </div>
-            <div class="product-card">
-                <img src="https://iili.io/diW8VbR.jpg" alt="TeleLatino Android">
-                <h3>TeleLatino Android</h3>
-                <p>Découvrez TeleLatino pour Android : votre passerelle vers un monde de divertissement latino!</p>
-                <p class="price">5000 FCFA</p>
                 <button class="btn" onclick="showDetails(1)">Voir détails</button>
-            </div>
-            <div class="product-card">
-                <img src="https://iili.io/dihNu7j.jpg" alt="TeleLatino Windows">
-                <h3>TeleLatino Windows</h3>
-                <p>Profitez de TeleLatino sur votre PC Windows : une expérience de streaming latino immersive!</p>
-                <p class="price">5000 FCFA</p>
-                <button class="btn" onclick="showDetails(2)">Voir détails</button>
             </div>
             <div class="product-card">
                 <img src="https://iili.io/dPC5Wdl.jpg" alt="Team Canvas Pro">
                 <h3>Team Canvas Pro</h3>
                 <p>Smartphone dernière génération avec appareil photo haute résolution</p>
                 <p class="price">1000 FCFA</p>
-                <button class="btn" onclick="showDetails(3)">Voir détails</button>
+                <button class="btn" onclick="showDetails(2)">Voir détails</button>
             </div>
             <div class="product-card">
                 <img src="https://iili.io/diAR06g.jpg" alt="Chatbot WhatsApp">
                 <h3>Intégrer un Chatbot WhatsApp</h3>
                 <p>Intégrez un Chatbot WhatsApp avec des réponses automatiques, GPT de différentes versions, sécurisé 24h/24</p>
                 <p class="price">5.000 FCFA</p>
-                <button class="btn" onclick="showDetails(4)">Voir détails</button>
+                <button class="btn" onclick="showDetails(3)">Voir détails</button>
             </div>
             <div class="product-card">
                 <img src="https://iili.io/diAVpRt.jpg" alt="Logiciels de déblocage">
                 <h3>Logiciels de déblocage</h3>
                 <p>Plusieurs logiciels disponibles chez Thomas. Suppression de compte Google pour tout type de téléphone</p>
                 <p class="price">10.000 FCFA</p>
-                <button class="btn" onclick="showDetails(5)">Voir détails</button>
+                <button class="btn" onclick="showDetails(4)">Voir détails</button>
             </div>
         </div>
 
@@ -266,6 +260,17 @@
     <script>
         const products = [
             {
+                title: "Canal+ à vie",
+                description: "Accédez à des milliers de chaînes et de contenus exclusifs à vie avec Canal+.",
+                price: "20.000 FCFA",
+                details: "📺 Profitez d'un accès illimité à tous vos contenus préférés ! 🌟\n\n" +
+                         "✅ Plus de 200 chaînes en direct\n" +
+                         "✅ Films, séries et documentaires exclusifs\n" +
+                         "✅ Contenu à la demande : regardez quand vous voulez\n" +
+                         "✅ Abonnement à vie : aucun paiement mensuel\n\n" +
+                         "🚀 Avec Canal+ à vie, transformez vos soirées en expériences inoubliables. Ne manquez jamais vos émissions préférées et profitez de la meilleure qualité d'image ! 🎥🍿"
+            },
+            {
                 title: "Des comptes Netflix",
                 description: "Tu veux des comptes Netflix par mois ou bien par jour ? Payer ici avec Thomas, c'est simple",
                 price: "2000 FCFA",
@@ -275,28 +280,6 @@
                          "✅ Forfaits flexibles : journaliers ou mensuels\n" +
                          "✅ Utilisable sur tous vos appareils\n\n" +
                          "🚀 Ne manquez plus jamais vos séries préférées ! Commencez votre aventure Netflix dès aujourd'hui et transformez chaque soirée en expérience cinéma. Avec nos comptes, c'est comme avoir Hollywood chez vous ! 🎬🍿"
-            },
-            {
-                title: "TeleLatino Android",
-                description: "Découvrez TeleLatino pour Android : votre passerelle vers un monde de divertissement latino!",
-                price: "5000 FCFA",
-                details: "🌟 Plongez dans l'univers vibrant de la culture latino-américaine ! 🎉\n\n" +
-                         "✅ Des milliers de films et séries en espagnol et portugais\n" +
-                         "✅ Chaînes TV en direct des pays d'Amérique latine\n" +
-                         "✅ Interface intuitive optimisée pour Android\n" +
-                         "✅ Téléchargements pour visionnage hors ligne\n\n" +
-                         "🚀 Emportez l'Amérique latine dans votre poche ! Avec TeleLatino sur Android, vivez une expérience de streaming unique, riche en couleurs et en émotions. C'est tout un continent de divertissement à portée de main ! 📱🌴"
-            },
-            {
-                title: "TeleLatino Windows",
-                description: "Profitez de TeleLatino sur votre PC Windows : une expérience de streaming latino immersive!",
-                price: "5000 FCFA",
-                details: "🖥️ Transformez votre PC en fenêtre sur l'Amérique latine ! 🌎\n\n" +
-                         "✅ Qualité Full HD sur grand écran\n" +
-                         "✅ Compatibilité avec tous les PC Windows\n" +
-                         "✅ Fonctionnalités exclusives PC : multi-fenêtrage, raccourcis clavier\n" +
-                         "✅ Synchronisation avec votre compte mobile\n\n" +
-                         "🚀 Vivez une expérience cinéma à domicile ! Avec TeleLatino sur Windows, votre ordinateur devient votre salle de spectacle personnelle. Préparez le popcorn, installez-vous confortablement, et laissez-vous emporter par la magie du divertissement latino-américain ! 🍿🎭"
             },
             {
                 title: "Team Canvas Pro",
