@@ -16,7 +16,48 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
     <style>
-       
+
+
+
+/* Styles pour le modal */
+.modal {
+    display: none; /* Masquer par défaut */
+    position: fixed; /* Fixe le modal */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    z-index: 1000; /* Assure que le modal est au-dessus des autres éléments */
+}
+
+.modal-content {
+    background: white; /* Fond blanc pour le contenu */
+    padding: 20px; /* Rembourrage autour du contenu */
+    border-radius: 5px; /* Coins arrondis */
+    max-width: 400px; /* Largeur maximale */
+    width: 90%; /* Largeur responsive */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+}
+
+.modal-close-overlay {
+    position: absolute; /* Overlay pour fermer le modal */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999; /* Juste en dessous du modal */
+}
+
+/* Autres styles précédemment définis... */
+
+
+
+
+
+        
     
       /* Ajout de la nouvelle carte */
         .card {
@@ -687,6 +728,38 @@
   </div>
 
 
+
+<!--
+    - NOTIFICATION TOAST
+  -->
+
+  <div class="notification-toast" data-toast>
+
+    <button class="toast-close-btn" data-toast-close>
+      <ion-icon name="close-outline"></ion-icon>
+    </button>
+
+    <div class="toast-banner">
+      <img src="./assets/images/products/jewellery-1.jpg" alt="Rose Gold Earrings" width="80" height="70">
+    </div>
+
+    <div class="toast-detail">
+
+      <p class="toast-message">
+        Someone in new just bought
+      </p>
+
+      <p class="toast-title">
+        Rose Gold Earrings
+      </p>
+
+      <p class="toast-meta">
+        <time datetime="PT2M">2 Minutes</time> ago
+      </p>
+
+    </div>
+
+  </div>
 
 
 
