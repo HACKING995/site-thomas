@@ -1,5 +1,5 @@
 {
-  "name": "mon-projet",
+  "name": "site-thomas",
   "version": "1.0.0",
   "description": "Un projet simple pour afficher des statistiques de visite.",
   "main": "server.js",
