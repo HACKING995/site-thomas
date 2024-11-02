@@ -190,3 +190,37 @@ function showCookieBanner() {
 
 // Appeler la fonction pour afficher la bannière
 showCookieBanner();
+
+
+
+
+
+
+
+// Fonction pour mettre à jour la date, l'heure et le jour
+function updateDateTime() {
+    const now = new Date();
+
+    // Formatage de la date
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = now.toLocaleDateString('fr-FR', dateOptions);
+    document.getElementById('footerDate').textContent = formattedDate;
+
+    // Formatage de l'heure
+    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedTime = now.toLocaleTimeString('fr-FR', timeOptions);
+    document.getElementById('footerTime').textContent = formattedTime;
+
+    // Formatage du jour de la semaine
+    const dayOptions = { weekday: 'long' };
+    const formattedDay = now.toLocaleDateString('fr-FR', dayOptions);
+    document.getElementById('footerDay').textContent = formattedDay;
+}
+
+// Appeler la fonction pour afficher la date et l'heure au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    updateDateTime();
+
+    // Mettre à jour l'heure toutes les secondes
+    setInterval(updateDateTime, 1000);
+});
