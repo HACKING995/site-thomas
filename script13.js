@@ -39,20 +39,20 @@ class VisitorCounter {
     }
 
     async handleCookieAcceptance() {
-        const userIp = await this.fetchUserIp();
-        const userCountry = await this.fetchUserCountry(userIp);
+        const userIp = await this.fetchUserIp(); // Récupérer l'adresse IP
+        const userCountry = await this.fetchUserCountry(userIp); // Récupérer le pays
 
         if (userIp) {
             localStorage.setItem(this.storageKeys.userIp, userIp);
-            document.getElementById('userIp').textContent = userIp;
+            document.getElementById('userIp').textContent = userIp; // Afficher l'adresse IP
         }
         
         if (userCountry) {
             localStorage.setItem(this.storageKeys.userCountry, userCountry);
-            document.getElementById('userCountry').textContent = userCountry;
+            document.getElementById('userCountry').textContent = userCountry; // Afficher le pays
         }
 
-        this.incrementVisits(userIp);
+        this.incrementVisits(userIp); // Mettre à jour les statistiques de visites
     }
 
     generateUniqueId() {
@@ -63,6 +63,7 @@ class VisitorCounter {
         const lastVisit = localStorage.getItem(this.storageKeys.lastVisitIp + userIp);
         const now = new Date().getTime();
 
+        // Vérifier si 24 heures se sont écoulées
         if (!lastVisit || now - parseInt(lastVisit) >= 24 * 60 * 60 * 1000) {
             localStorage.setItem(this.storageKeys.lastVisitIp + userIp, now.toString());
             const totalUsers = parseInt(localStorage.getItem(this.storageKeys.totalUsers) || '0');
@@ -134,27 +135,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     const stats = visitorCounter.getStats();
     console.log('Statistiques des visiteurs:', stats);
 
+    // Mettre à jour les éléments HTML avec les statistiques initiales
     document.getElementById('dailyVisits').textContent = stats.dailyVisits;
     document.getElementById('weeklyVisits').textContent = stats.weeklyVisits;
     document.getElementById('monthlyVisits').textContent = stats.monthlyVisits;
     document.getElementById('totalUsers').textContent = stats.totalUsers;
 
+    // Afficher l'adresse IP et le pays si déjà stockés
     const userIp = localStorage.getItem(visitorCounter.storageKeys.userIp);
     const userCountry = localStorage.getItem(visitorCounter.storageKeys.userCountry);
     
     if (userIp) {
-        document.getElementById('userIp').textContent = userIp;
+        document.getElementById('userIp').textContent = userIp; // Afficher l'adresse IP
     }
     
     if (userCountry) {
-        document.getElementById('userCountry').textContent = userCountry;
+        document.getElementById('userCountry').textContent = userCountry; // Afficher le pays
     }
 
     document.getElementById('accept-cookies').onclick = async function() {
-        setCookie('cookiesAccepted', 'true'); // Pas de durée d'expiration, cookie de session
-        await visitorCounter.handleCookieAcceptance();
+        setCookie('cookiesAccepted', 'true', 30); // Cookie valable 30 jours
+        await visitorCounter.handleCookieAcceptance(); // Compter la visite
         document.getElementById('cookie-banner').style.display = 'none';
 
+        // Mettre à jour les statistiques après l'acceptation
         const updatedStats = visitorCounter.getStats();
         document.getElementById('dailyVisits').textContent = updatedStats.dailyVisits;
         document.getElementById('weeklyVisits').textContent = updatedStats.weeklyVisits;
@@ -164,8 +168,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Fonction pour créer un cookie
-function setCookie(name, value) {
-    document.cookie = `${name}=${encodeURIComponent(value)}; path=/`; // Pas de durée d'expiration
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
 }
 
 // Fonction pour lire un cookie
@@ -176,10 +181,14 @@ function getCookie(name) {
     }, '');
 }
 
-// Afficher la bannière si le cookie n'est pas présent
+// Afficher la bannière de cookies
 function showCookieBanner() {
-    if (!getCookie('cookiesAccepted')) {
-        document.getElementById('cookie-banner').style.display = 'block';
+    // Toujours afficher la bannière au chargement
+    document.getElementById('cookie-banner').style.display = 'block';
+
+    // Vérifier si le cookie d'acceptation existe
+    if (getCookie('cookiesAccepted')) {
+        document.getElementById('cookie-banner').style.display = 'none';
     }
 }
 
