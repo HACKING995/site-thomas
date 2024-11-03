@@ -39,20 +39,20 @@ class VisitorCounter {
     }
 
     async handleCookieAcceptance() {
-        const userIp = await this.fetchUserIp(); // Récupérer l'adresse IP
-        const userCountry = await this.fetchUserCountry(userIp); // Récupérer le pays
+        const userIp = await this.fetchUserIp();
+        const userCountry = await this.fetchUserCountry(userIp);
 
         if (userIp) {
             localStorage.setItem(this.storageKeys.userIp, userIp);
-            document.getElementById('userIp').textContent = userIp; // Afficher l'adresse IP
+            document.getElementById('userIp').textContent = userIp;
         }
         
         if (userCountry) {
             localStorage.setItem(this.storageKeys.userCountry, userCountry);
-            document.getElementById('userCountry').textContent = userCountry; // Afficher le pays
+            document.getElementById('userCountry').textContent = userCountry;
         }
 
-        this.incrementVisits(userIp); // Mettre à jour les statistiques de visites
+        this.incrementVisits(userIp);
     }
 
     generateUniqueId() {
@@ -63,7 +63,6 @@ class VisitorCounter {
         const lastVisit = localStorage.getItem(this.storageKeys.lastVisitIp + userIp);
         const now = new Date().getTime();
 
-        // Vérifier si 24 heures se sont écoulées
         if (!lastVisit || now - parseInt(lastVisit) >= 24 * 60 * 60 * 1000) {
             localStorage.setItem(this.storageKeys.lastVisitIp + userIp, now.toString());
             const totalUsers = parseInt(localStorage.getItem(this.storageKeys.totalUsers) || '0');
@@ -135,30 +134,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     const stats = visitorCounter.getStats();
     console.log('Statistiques des visiteurs:', stats);
 
-    // Mettre à jour les éléments HTML avec les statistiques initiales
     document.getElementById('dailyVisits').textContent = stats.dailyVisits;
     document.getElementById('weeklyVisits').textContent = stats.weeklyVisits;
     document.getElementById('monthlyVisits').textContent = stats.monthlyVisits;
     document.getElementById('totalUsers').textContent = stats.totalUsers;
 
-    // Afficher l'adresse IP et le pays si déjà stockés
     const userIp = localStorage.getItem(visitorCounter.storageKeys.userIp);
     const userCountry = localStorage.getItem(visitorCounter.storageKeys.userCountry);
     
     if (userIp) {
-        document.getElementById('userIp').textContent = userIp; // Afficher l'adresse IP
+        document.getElementById('userIp').textContent = userIp;
     }
     
     if (userCountry) {
-        document.getElementById('userCountry').textContent = userCountry; // Afficher le pays
+        document.getElementById('userCountry').textContent = userCountry;
     }
 
     document.getElementById('accept-cookies').onclick = async function() {
-        setCookie('cookiesAccepted', 'true', 30); // Cookie valable 30 jours
-        await visitorCounter.handleCookieAcceptance(); // Compter la visite
+        setCookie('cookiesAccepted', 'true'); // Pas de durée d'expiration, cookie de session
+        await visitorCounter.handleCookieAcceptance();
         document.getElementById('cookie-banner').style.display = 'none';
 
-        // Mettre à jour les statistiques après l'acceptation
         const updatedStats = visitorCounter.getStats();
         document.getElementById('dailyVisits').textContent = updatedStats.dailyVisits;
         document.getElementById('weeklyVisits').textContent = updatedStats.weeklyVisits;
@@ -168,9 +164,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Fonction pour créer un cookie
-function setCookie(name, value, days) {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+function setCookie(name, value) {
+    document.cookie = `${name}=${encodeURIComponent(value)}; path=/`; // Pas de durée d'expiration
 }
 
 // Fonction pour lire un cookie
@@ -191,27 +186,18 @@ function showCookieBanner() {
 // Appeler la fonction pour afficher la bannière
 showCookieBanner();
 
-
-
-
-
-
-
 // Fonction pour mettre à jour la date, l'heure et le jour
 function updateDateTime() {
     const now = new Date();
 
-    // Formatage de la date
     const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = now.toLocaleDateString('fr-FR', dateOptions);
     document.getElementById('footerDate').textContent = formattedDate;
 
-    // Formatage de l'heure
     const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
     const formattedTime = now.toLocaleTimeString('fr-FR', timeOptions);
     document.getElementById('footerTime').textContent = formattedTime;
 
-    // Formatage du jour de la semaine
     const dayOptions = { weekday: 'long' };
     const formattedDay = now.toLocaleDateString('fr-FR', dayOptions);
     document.getElementById('footerDay').textContent = formattedDay;
@@ -220,7 +206,5 @@ function updateDateTime() {
 // Appeler la fonction pour afficher la date et l'heure au chargement
 document.addEventListener('DOMContentLoaded', () => {
     updateDateTime();
-
-    // Mettre à jour l'heure toutes les secondes
     setInterval(updateDateTime, 1000);
 });
