@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <meta property="og:image" content="https://iili.io/d48ddQ9.jpg">
+    <meta property="og:url" content="https://hacking995.github.io/site-thomas/"> 
+    <meta property="og:type" content="website">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    
+    
+    
+    
+    <title>Discussion - THOMAS-TECH GROUP</title>
+    <link rel="stylesheet" href="styles2.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1><i class="fas fa-comments"></i> Forum de Discussion</h1>
+        <p>Partagez vos idées et vos problèmes</p>
+    </div>
+    <div id="user-profile">
+        <button id="login-btn" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Connexion</button>
+        <button id="register-btn" class="auth-btn"><i class="fas fa-user-plus"></i> Inscription</button>
+        <div id="profile-info" class="hidden">
+            <img id="profile-avatar" src="" alt="Avatar">
+            <span id="profile-name"></span>
+            <button id="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about-section">À Propos</a></li>
+        <li><a href="#testimonials-section">Témoignages</a></li>
+        <li><a href="#events-section">Événements</a></li>
+        <li><a href="#social-media-section">Suivez-nous</a></li>
+    </ul>
+</nav>
+
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Connexion</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email:</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-lock"></i> Mot de passe:</label>
+                <input type="password" name="password" required>
+            </div>
+            <a href="#password-reset-modal" id="forgot-password-link">Mot de passe oublié ?</a>
+            <button type="submit" class="submit-btn">Se connecter</button>
+        </form>
+    </div>
+</div>
+
+<div id="register-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Inscription</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Nom d'utilisateur:</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email:</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-lock"></i> Mot de passe:</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-image"></i> Avatar:</label>
+                <input type="file" name="avatar" accept="image/*" class="file-input">
+            </div>
+            <button type="submit" class="submit-btn">S'inscrire</button>
+        </form>
+    </div>
+</div>
+
+<div id="password-reset-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Réinitialiser le mot de passe</h2>
+        <form id="password-reset-form">
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email:</label>
+                <input type="email" name="email" required>
+            </div>
+            <button type="submit" class="submit-btn">Envoyer un lien de réinitialisation</button>
+        </form>
+    </div>
+</div>
+
+<section id="about-section">
+    <h2>À Propos de Nous</h2>
+    <p>Bienvenue sur le forum de discussion de THOMAS-TECH GROUP ! Ici, vous pouvez partager vos idées, poser des questions et interagir avec d'autres membres de la communauté.</p>
+    <p>Rejoignez-nous pour des discussions enrichissantes sur la technologie, l'innovation et bien plus encore.</p>
+</section>
+
+
+<section id="testimonials-section">
+    <h2>Témoignages</h2>
+    <div class="testimonial">
+        <img src="images/jean.jpg" alt="Jean Dupont" class="testimonial-avatar">
+        <p>"Ce forum m'a beaucoup aidé à trouver des solutions à mes problèmes techniques."</p>
+        <span>- MD HACKER</span>
+    </div>
+    <div class="testimonial">
+        <img src="images/marie.jpg" alt="Marie Curie" class="testimonial-avatar">
+        <p>"Une communauté incroyable avec des gens prêts à aider !"</p>
+        <span>- Marie Curie</span>
+    </div>
+</section>
+
+
+
+
+
+<section id="events-section">
+    <h2>Événements à Venir</h2>
+    <ul>
+        <li>Webinaire sur la technologie - 15 mars 2024</li>
+        <li>Atelier de programmation - 22 mars 2024</li>
+    </ul>
+</section>
+
+<section id="social-media-section">
+    <h2>Suivez-nous</h2>
+    <a href="https://www.facebook.com/formateur.en.reseau.et.systeme.informa" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+    <a href="https://www.instagram.com/kouamedjakiss765/profilecard/?igsh=MTB3bHV0MG5jMTduaA==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</section>
+
+<section id="discussion-section">
+    <div class="messages-container">
+        <div id="messages">
+            <!-- Messages des utilisateurs apparaîtront ici -->
+        </div>
+    </div>
+
+    <form id="message-form" class="hidden">
+        <div class="input-group">
+            <textarea id="message-input" placeholder="Écrivez votre message ici..." required></textarea>
+            <div class="form-actions">
+                <div class="file-input-wrapper">
+                    <label for="image-input" class="file-label">
+                        <i class="fas fa-image"></i> Ajouter une image
+                        <input type="file" id="image-input" accept="image/*">
+                    </label>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Envoyer
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="login-prompt" class="login-prompt">
+        <p><i class="fas fa-info-circle"></i> Veuillez vous connecter pour participer à la discussion</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 THOMAS-TECH GROUP. Tous droits réservés.</p>
+    <ul>
+        <li><a href="#terms">Conditions d'utilisation</a></li>
+        <li><a href="#privacy">Politique de confidentialité</a></li>
+    </ul>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
