@@ -151,6 +151,37 @@
         </div>
     </div>
 
+<section id="discussion-section">
+    <div class="messages-container">
+        <div id="messages">
+            <!-- Messages des utilisateurs apparaîtront ici -->
+        </div>
+    </div>
+
+    <form id="message-form" class="hidden">
+        <div class="input-group">
+            <textarea id="message-input" placeholder="Écrivez votre message ici..." required></textarea>
+            <div class="form-actions">
+                <div class="file-input-wrapper">
+                    <label for="image-input" class="file-label">
+                        <i class="fas fa-image"></i> Ajouter une image
+                        <input type="file" id="image-input" accept="image/*">
+                    </label>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Envoyer
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="login-prompt" class="login-prompt">
+        <p><i class="fas fa-info-circle"></i> Veuillez vous connecter pour participer à la discussion</p>
+    </div>
+</section>
+
+
+    
     <form id="message-form" class="hidden">
         <div class="input-group">
             <textarea id="message-input" placeholder="Écrivez votre message ici..." required></textarea>
