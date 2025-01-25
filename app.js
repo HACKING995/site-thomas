@@ -1,6 +1,5 @@
 let users = [];
 let currentUser = null;
-let messages = []; // Tableau pour stocker les messages
 
 const loginBtn = document.getElementById('login-btn');
 const registerBtn = document.getElementById('register-btn');
@@ -112,9 +111,6 @@ function loginUser(user) {
     profileInfo.classList.remove('hidden');
     messageForm.classList.remove('hidden');
     loginPrompt.classList.add('hidden');
-    
-    // Afficher les messages existants
-    displayMessages();
 }
 
 document.getElementById('logout-btn').addEventListener('click', function() {
@@ -126,18 +122,14 @@ document.getElementById('logout-btn').addEventListener('click', function() {
     loginPrompt.classList.remove('hidden');
 });
 
-// Fonction pour afficher les messages
-function displayMessages() {
-    messagesDiv.innerHTML = ''; // Effacer les messages existants
-    messages.forEach(msg => {
-        const messageElement = createMessageElement(msg);
-        messagesDiv.appendChild(messageElement);
-    });
-    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Faire défiler vers le bas
-}
+// Gestion des messages
+messageForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!currentUser) return;
 
-// Création d'un élément de message
-function createMessageElement(msg) {
+    const messageInput = document.getElementById('message-input');
+    const imageInput = document.getElementById('image-input');
+    
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
 
@@ -145,16 +137,16 @@ function createMessageElement(msg) {
     messageHeader.classList.add('message-header');
     
     const avatarImg = document.createElement('img');
-    avatarImg.src = msg.user.avatar;
+    avatarImg.src = currentUser.avatar;
     avatarImg.classList.add('message-avatar');
     
     const authorSpan = document.createElement('span');
     authorSpan.classList.add('message-author');
-    authorSpan.textContent = msg.user.username;
+    authorSpan.textContent = currentUser.username;
     
     const timestampSpan = document.createElement('span');
     timestampSpan.classList.add('message-timestamp');
-    timestampSpan.textContent = new Date(msg.timestamp).toLocaleString();
+    timestampSpan.textContent = new Date().toLocaleString();
 
     messageHeader.appendChild(avatarImg);
     messageHeader.appendChild(authorSpan);
@@ -162,12 +154,17 @@ function createMessageElement(msg) {
     messageElement.appendChild(messageHeader);
 
     const textElement = document.createElement('p');
-    textElement.textContent = msg.text;
+    textElement.textContent = messageInput.value;
     messageElement.appendChild(textElement);
 
-    if (msg.image) {
+    if (imageInput.files.length > 0) {
         const imgElement = document.createElement('img');
-        imgElement.src = msg.image;
+        const imageUrl = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(imageInput.files[0]);
+        });
+        imgElement.src = imageUrl;
         imgElement.alt = "Image jointe";
         imgElement.classList.add('message-image');
         messageElement.appendChild(imgElement);
@@ -182,50 +179,21 @@ function createMessageElement(msg) {
     deleteButton.classList.add('delete-btn');
     deleteButton.addEventListener('click', () => {
         messagesDiv.removeChild(messageElement);
-        messages = messages.filter(m => m !== msg); // Supprimer le message du tableau
     });
 
     const replyButton = document.createElement('button');
     replyButton.textContent = 'Répondre';
     replyButton.classList.add('reply-btn');
     replyButton.addEventListener('click', () => {
-        document.getElementById('message-input').value = `@${msg.user.username} `;
-        document.getElementById('message-input').focus();
+        messageInput.value = `@${currentUser.username} `;
+        messageInput.focus();
     });
 
     actionsDiv.appendChild(deleteButton);
     actionsDiv.appendChild(replyButton);
     messageElement.appendChild(actionsDiv);
 
-    return messageElement;
-}
-
-// Gestion des messages
-form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    if (!currentUser) return;
-
-    const messageInput = document.getElementById('message-input');
-    const imageInput = document.getElementById('image-input');
-    
-    const newMessage = {
-        user: currentUser,
-        text: messageInput.value,
-        timestamp: Date.now(),
-        image: null
-    };
-
-    if (imageInput.files.length > 0) {
-        newMessage.image = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.readAsDataURL(imageInput.files[0]);
-        });
-    }
-
-    messages.push(newMessage); // Ajouter le message au tableau
-    const messageElement = createMessageElement(newMessage);
     messagesDiv.appendChild(messageElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Faire défiler vers le bas
-    form.reset();
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    messageForm.reset();
 });
