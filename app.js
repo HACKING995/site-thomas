@@ -1,5 +1,6 @@
 let users = [];
 let currentUser = null;
+let messages = []; // Tableau pour stocker les messages
 
 const loginBtn = document.getElementById('login-btn');
 const registerBtn = document.getElementById('register-btn');
@@ -9,8 +10,8 @@ const passwordResetModal = document.getElementById('password-reset-modal');
 const profileInfo = document.getElementById('profile-info');
 const messageForm = document.getElementById('message-form');
 const loginPrompt = document.getElementById('login-prompt');
-const closeBtns = document.querySelectorAll('.close');
 const messagesDiv = document.getElementById('messages');
+const closeBtns = document.querySelectorAll('.close');
 
 // Gestionnaires modaux
 loginBtn.addEventListener('click', () => loginModal.style.display = 'block');
@@ -33,7 +34,6 @@ window.addEventListener('click', (e) => {
 document.getElementById('register-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const formData = new FormData(this);
-
     const username = formData.get('username');
     const email = formData.get('email');
 
@@ -111,6 +111,9 @@ function loginUser(user) {
     profileInfo.classList.remove('hidden');
     messageForm.classList.remove('hidden');
     loginPrompt.classList.add('hidden');
+    
+    // Afficher les messages existants
+    displayMessages();
 }
 
 document.getElementById('logout-btn').addEventListener('click', function() {
@@ -122,31 +125,35 @@ document.getElementById('logout-btn').addEventListener('click', function() {
     loginPrompt.classList.remove('hidden');
 });
 
-// Gestion des messages
-messageForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    if (!currentUser) return;
+// Fonction pour afficher les messages
+function displayMessages() {
+    messagesDiv.innerHTML = ''; // Effacer les messages existants
+    messages.forEach(msg => {
+        const messageElement = createMessageElement(msg);
+        messagesDiv.appendChild(messageElement);
+    });
+    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Faire défiler vers le bas
+}
 
-    const messageInput = document.getElementById('message-input');
-    const imageInput = document.getElementById('image-input');
-    
+// Création d'un élément de message
+function createMessageElement(msg) {
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
 
     const messageHeader = document.createElement('div');
     messageHeader.classList.add('message-header');
-    
+
     const avatarImg = document.createElement('img');
-    avatarImg.src = currentUser.avatar;
+    avatarImg.src = msg.user.avatar;
     avatarImg.classList.add('message-avatar');
-    
+
     const authorSpan = document.createElement('span');
     authorSpan.classList.add('message-author');
-    authorSpan.textContent = currentUser.username;
-    
+    authorSpan.textContent = msg.user.username;
+
     const timestampSpan = document.createElement('span');
     timestampSpan.classList.add('message-timestamp');
-    timestampSpan.textContent = new Date().toLocaleString();
+    timestampSpan.textContent = new Date(msg.timestamp).toLocaleString();
 
     messageHeader.appendChild(avatarImg);
     messageHeader.appendChild(authorSpan);
@@ -154,23 +161,17 @@ messageForm.addEventListener('submit', async function(e) {
     messageElement.appendChild(messageHeader);
 
     const textElement = document.createElement('p');
-    textElement.textContent = messageInput.value;
+    textElement.textContent = msg.text;
     messageElement.appendChild(textElement);
 
-    if (imageInput.files.length > 0) {
+    if (msg.image) {
         const imgElement = document.createElement('img');
-        const imageUrl = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.readAsDataURL(imageInput.files[0]);
-        });
-        imgElement.src = imageUrl;
+        imgElement.src = msg.image;
         imgElement.alt = "Image jointe";
         imgElement.classList.add('message-image');
         messageElement.appendChild(imgElement);
     }
 
-    // Ajout des boutons supprimer et répondre
     const actionsDiv = document.createElement('div');
     actionsDiv.classList.add('message-actions');
 
@@ -179,21 +180,48 @@ messageForm.addEventListener('submit', async function(e) {
     deleteButton.classList.add('delete-btn');
     deleteButton.addEventListener('click', () => {
         messagesDiv.removeChild(messageElement);
+        messages = messages.filter(m => m !== msg); // Supprimer le message du tableau
     });
 
     const replyButton = document.createElement('button');
     replyButton.textContent = 'Répondre';
     replyButton.classList.add('reply-btn');
     replyButton.addEventListener('click', () => {
-        messageInput.value = `@${currentUser.username} `;
-        messageInput.focus();
+        document.getElementById('message-input').value = `@${msg.user.username} `;
+        document.getElementById('message-input').focus();
     });
 
     actionsDiv.appendChild(deleteButton);
     actionsDiv.appendChild(replyButton);
     messageElement.appendChild(actionsDiv);
 
-    messagesDiv.appendChild(messageElement);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    messageForm.reset();
+    return messageElement;
+}
+
+// Gestion des messages
+messageForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!currentUser) return;
+
+    const messageInput = document.getElementById('message-input');
+    const imageInput = document.getElementById('image-input');
+
+    const newMessage = {
+        user: currentUser,
+        text: messageInput.value,
+        timestamp: Date.now(),
+        image: null
+    };
+
+    if (imageInput.files.length > 0) {
+        newMessage.image = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(imageInput.files[0]);
+        });
+    }
+
+    messages.push(newMessage); // Ajouter le message au tableau
+    displayMessages(); // Afficher tous les messages
+    messageForm.reset(); // Réinitialiser le formulaire
 });
